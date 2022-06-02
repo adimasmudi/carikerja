@@ -12,7 +12,7 @@ class ListingController extends Controller
 
         return view('listings.index', [
             'heading' => 'Latest Listings',
-            'listings' => Listing::all()
+            'listings' => Listing::latest()->filter(request(['tag']))->get()
             // using all and find will not make it error, because it has specified in the laravel itself (i forget the detail hehe)
         ]);
     }

@@ -1,11 +1,10 @@
-@extends('layout')
-@section('content')
+<x-layout>
 @include('partials._hero')
 @include('partials._search')
 
-<h1>{{$heading}}</h1>
+<h1 class="ml-4 mb-4 font-bold">{{$heading}}</h1>
 
-<div class="flex flex-row">
+<div class="flex flex-row m-4">
     @foreach ($listings as $listing)
       <x-listing-card :listing="$listing" />
     @endforeach
@@ -15,5 +14,4 @@
 @if(count($listings) == 0)
     <p>No Listings Found</p>
 @endif
-
-@endsection
+</x-layout>
