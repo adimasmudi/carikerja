@@ -9,7 +9,9 @@ class Listing extends Model
 {
     use HasFactory;
 
-    public function scopeFilter($query, array $filters)
+    protected $fillable = ['title', 'company', 'location', 'email', 'website', 'tags', 'description'];
+
+    public function scopeFilter($query, array $filters): void
     {
         if ($filters['tag'] ?? false) {
             $query->where('tags', 'like', '%' . request('tag') . '%');

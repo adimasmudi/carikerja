@@ -1,6 +1,6 @@
 @props(['listing'])
 
-<x-card>
+<x-card class="w-2/5 ">
     <div class="flex bg-gray-100">
         <img class="hidden w-48 mr-6 md:block"
           src="{{$listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png')}}" alt="" />

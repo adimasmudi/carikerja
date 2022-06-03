@@ -4,7 +4,7 @@
 
 <h1 class="ml-4 mb-4 font-bold">{{$heading}}</h1>
 
-<div class="flex flex-row m-4">
+<div class="flex flex-row flex-wrap m-4">
     @foreach ($listings as $listing)
       <x-listing-card :listing="$listing" />
     @endforeach
