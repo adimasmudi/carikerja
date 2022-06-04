@@ -14,7 +14,7 @@ class ListingController extends Controller
 
         return view('listings.index', [
             'heading' => 'Latest Listings',
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->get()
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->simplePaginate(4)
             // using all and find will not make it error, because it has specified in the laravel itself (i forget the detail hehe)
         ]);
     }
@@ -45,6 +45,10 @@ class ListingController extends Controller
             "tags" => "required",
             "description" => "required"
         ]);
+
+        if ($request->hasFile('logo')) {
+            $formFields['logo'] = $request->file('logo')->store('logos', 'public');
+        }
 
         Listing::create($formFields);
 
