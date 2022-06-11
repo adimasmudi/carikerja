@@ -51,6 +51,9 @@ Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
+// show register option
+Route::get('/register/option', [UserController::class, 'registerOption']);
+
 // Show User Registration/create form
 Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
@@ -59,6 +62,9 @@ Route::post('/users', [UserController::class, 'store']);
 
 // User Logout
 Route::post('/logout', [UserController::class, 'logout']);
+
+// show login option
+Route::get('/login/option', [UserController::class, 'loginOption']);
 
 // Show Login Form
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');

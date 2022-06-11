@@ -8,6 +8,12 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
+    // show register option
+    public function registerOption()
+    {
+        return view('users.registerOption');
+    }
+
     // Show Registration Form
     public function create()
     {
@@ -45,6 +51,12 @@ class UserController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/')->with('message', 'Anda berhasil logout');
+    }
+
+    // show login option
+    public function loginOption()
+    {
+        return view('users.loginOption');
     }
 
     // Show Login Form
