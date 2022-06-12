@@ -26,7 +26,7 @@
                 <div class="text-lg space-y-6">
                     {{ $listing->description }}
                     <div class="w-1/5 mx-auto">
-                        <a href="mailto:{{ $listing->email }}"
+                        <a href="/apply/{{ $listing->id }}"
                             class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"><i
                                 class="fa-solid fa-check" aria-hidden="true"></i>
                             Apply Langsung</a>

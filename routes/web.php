@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\BelajarWeb;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\ListingController;
 
 /*
@@ -73,6 +74,8 @@ Route::get('/login/option', [UserController::class, 'loginOption']);
 Route::get('/login/recruiter', [UserController::class, 'loginRecruiter'])->name('loginRecruiter')->middleware('guest');
 Route::get('/login/seeker', [UserController::class, 'loginSeeker'])->name('loginSeeker')->middleware('guest');
 
-
 // Login user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
+
+// show apply to work form
+Route::get('/apply/{listing}', [ApplyController::class, 'apply']);
