@@ -15,7 +15,7 @@
                                 apply langsung.
                             </div>
                             <div>
-                                <a href="/login"
+                                <a href="/login/seeker"
                                     class="block bg-laravel text-white text-center mt-6 py-2 rounded-xl hover:opacity-80">
                                     Login</a>
                             </div>
@@ -35,7 +35,7 @@
                                 lamaran atau tidak.
                             </div>
                             <div>
-                                <a href="/login"
+                                <a href="/login/recruiter"
                                     class="block bg-laravel text-center text-white mt-6 py-2 rounded-xl hover:opacity-80">
                                     Login</a>
                             </div>

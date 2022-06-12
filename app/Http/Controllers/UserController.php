@@ -14,10 +14,16 @@ class UserController extends Controller
         return view('users.registerOption');
     }
 
-    // Show Registration Form
-    public function create()
+    // Show Registration Form of Recruiter
+    public function createRecruiter()
     {
-        return view('users.register');
+        return view('users.registerRecruiter');
+    }
+
+    // Show Registration Form of Seeker
+    public function createSeeker()
+    {
+        return view('users.registerSeeker');
     }
 
     // Create New User
@@ -60,9 +66,14 @@ class UserController extends Controller
     }
 
     // Show Login Form
-    public function login()
+    public function loginSeeker()
     {
-        return view('users.login');
+        return view('users.loginSeeker');
+    }
+
+    public function loginRecruiter()
+    {
+        return view('users.loginRecruiter');
     }
 
     // Authenticate User

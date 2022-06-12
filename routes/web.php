@@ -55,7 +55,10 @@ Route::get('/listings/{listing}', [ListingController::class, 'show']);
 Route::get('/register/option', [UserController::class, 'registerOption']);
 
 // Show User Registration/create form
-Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+Route::get('/register/recruiter', [UserController::class, 'createRecruiter'])->middleware('guest');
+
+// Show User Registration/create form
+Route::get('/register/seeker', [UserController::class, 'createSeeker'])->middleware('guest');
 
 // Create a new user
 Route::post('/users', [UserController::class, 'store']);
@@ -66,8 +69,10 @@ Route::post('/logout', [UserController::class, 'logout']);
 // show login option
 Route::get('/login/option', [UserController::class, 'loginOption']);
 
-// Show Login Form
-Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
+// Show Login Form in recruiter or seeker
+Route::get('/login/recruiter', [UserController::class, 'loginRecruiter'])->name('loginRecruiter')->middleware('guest');
+Route::get('/login/seeker', [UserController::class, 'loginSeeker'])->name('loginSeeker')->middleware('guest');
+
 
 // Login user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
