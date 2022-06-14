@@ -33,15 +33,7 @@
 
             <form enctype="multipart/form-data">
                 @csrf
-                <div class="mb-6">
-                    <label for="SeekerName" class="inline-block text-lg mb-2">Nama Lengkap</label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="SeekerName"
-                        value="{{ old('SeekerName') }}" />
 
-                    @error('SeekerName')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
 
                 <div class="mb-6">
                     <label for="subject" class="inline-block text-lg mb-2">Subjek Lamaran</label>
@@ -53,27 +45,6 @@
                     @enderror
                 </div>
 
-                <div class="mb-6">
-                    <label for="address" class="inline-block text-lg mb-2">Alamat Pelamar</label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="address"
-                        placeholder="Contoh : kamal, Bangkalan" value="{{ old('address') }}" />
-
-                    @error('address')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
-                    <label for="email" class="inline-block text-lg mb-2">
-                        Contact Email
-                    </label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="email"
-                        value="{{ old('email') }}" />
-
-                    @error('email')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
 
                 <div class="mb-6">
                     <label for="file" class="inline-block text-lg mb-2">

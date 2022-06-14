@@ -4,6 +4,7 @@ use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApplyController;
 use App\Http\Controllers\ListingController;
 
@@ -88,11 +89,11 @@ Route::get('/apply/{listing}', [ApplyController::class, 'apply']);
 
 // Admin routes
 Route::prefix('admin')->group(function () {
-    Route::get('/', [UserController::class, 'loginAdmin']);
+    Route::get('/', [AdminController::class, 'loginAdmin']);
 
-    Route::get('/dashboard', [UserController::class, 'dashboardAdmin']);
+    Route::get('/dashboard', [AdminController::class, 'dashboardAdmin']);
 
-    Route::get('/dashboard/recruiter', [UserController::class, 'dashboardAdminRecruiter']);
+    Route::get('/dashboard/recruiter', [AdminController::class, 'dashboardAdminRecruiter']);
 
-    Route::get('/dashboard/seeker', [UserController::class, 'dashboardAdminSeeker']);
+    Route::get('/dashboard/seeker', [AdminController::class, 'dashboardAdminSeeker']);
 });

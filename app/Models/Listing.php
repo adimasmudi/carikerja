@@ -27,6 +27,12 @@ class Listing extends Model
     // Relationship to user
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Recruiter::class, 'user_id');
+    }
+
+    // Relationship to apply
+    public function apply()
+    {
+        return $this->hasMany(Apply::class, 'listing_id');
     }
 }

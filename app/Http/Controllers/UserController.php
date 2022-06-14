@@ -92,26 +92,4 @@ class UserController extends Controller
 
         return back()->withErrors(['email' => 'Email atau kata sandi salah'])->onlyInput('email');
     }
-
-    // Show Login Login admin
-    public function loginAdmin()
-    {
-        return view('admin.admin');
-    }
-
-    // dashboard admin
-    public function dashboardAdmin()
-    {
-        return view('admin.dashboard');
-    }
-
-    public function dashboardAdminRecruiter()
-    {
-        return view('admin.recruiter');
-    }
-
-    public function dashboardAdminSeeker()
-    {
-        return view('admin.seeker');
-    }
 }
