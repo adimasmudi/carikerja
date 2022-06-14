@@ -14,4 +14,9 @@ class ApplyController extends Controller
             'listing' => $listing
         ]);
     }
+
+    public function manage()
+    {
+        return view('apply.manage_apply');
+    }
 }

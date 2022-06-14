@@ -2,7 +2,6 @@
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
-use App\Http\Controllers\BelajarWeb;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApplyController;
@@ -77,8 +76,14 @@ Route::get('/login/seeker', [UserController::class, 'loginSeeker'])->name('login
 // Login user
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
+
+// show manage apply
+Route::get('/apply/manage', [ApplyController::class, 'manage']);
+
 // show apply to work form
 Route::get('/apply/{listing}', [ApplyController::class, 'apply']);
+
+
 
 
 // Admin routes
