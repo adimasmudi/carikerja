@@ -79,3 +79,15 @@ Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
 // show apply to work form
 Route::get('/apply/{listing}', [ApplyController::class, 'apply']);
+
+
+// Admin routes
+Route::prefix('admin')->group(function () {
+    Route::get('/', [UserController::class, 'loginAdmin']);
+
+    Route::get('/dashboard', [UserController::class, 'dashboardAdmin']);
+
+    Route::get('/dashboard/recruiter', [UserController::class, 'dashboardAdminRecruiter']);
+
+    Route::get('/dashboard/seeker', [UserController::class, 'dashboardAdminSeeker']);
+});

@@ -1,11 +1,11 @@
 <x-layout>
     <x-card class="p-10 max-w-lg mt-24" style="margin:auto">
         <header class="text-center">
-            <h2 class="text-2xl font-bold uppercase mb-1">Login</h2>
-            <p class="mb-4">Log in ke akun untuk posting pekerjaan</p>
+            <h2 class="text-2xl font-bold uppercase mb-1">Login Sebagai Admin</h2>
+            <p class="mb-4">Log in ke akun admin</p>
         </header>
 
-        <form method="POST" action="/users/recruiter/authenticate">
+        <form method="POST" action="/admin/authenticate">
             @csrf
 
             <div class="mb-6">
@@ -32,16 +32,11 @@
 
             <div class="mb-6">
                 <button type="submit" class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                    Sign In
+                    Login
                 </button>
             </div>
 
-            <div class="mt-8">
-                <p>
-                    Belum punya akun?
-                    <a href="/register" class="text-laravel">Register</a>
-                </p>
-            </div>
+
         </form>
     </x-card>
 </x-layout>

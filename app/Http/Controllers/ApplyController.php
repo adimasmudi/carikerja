@@ -10,7 +10,7 @@ class ApplyController extends Controller
     // Show apply to work form
     public function apply(Listing $listing)
     {
-        return view('users.apply', [
+        return view('apply.apply', [
             'listing' => $listing
         ]);
     }

@@ -5,7 +5,7 @@
             <p class="mb-4">Log in ke akun untuk mencari pekerjaan</p>
         </header>
 
-        <form method="POST" action="/users/authenticate">
+        <form method="POST" action="/users/seeker/authenticate">
             @csrf
 
             <div class="mb-6">

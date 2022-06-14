@@ -1,7 +1,29 @@
 <x-layout>
+    <a href="/" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back to Home
+    </a>
     <div class="flex flex-row justify-around">
         <div class="ml-2">
-            {{ $listing->id }}
+            <h3 class="text-lg mb-2 font-bold">Detail pekerjaan yang anda lamar</h3>
+            <table class="table-auto">
+
+
+                <tr>
+                    <td class="text-lg mb-2">Judul Pekerjaan</td>
+                    <td class="text-lg mb-2">:</td>
+                    <td class="text-lg mb-2">{{ $listing->title }}</td>
+                </tr>
+                <tr>
+                    <td class="text-lg mb-2">Perusahaan</td>
+                    <td class="text-lg mb-2">:</td>
+                    <td class="text-lg mb-2">{{ $listing->company }}</td>
+                </tr>
+                <tr>
+                    <td class="text-lg mb-2">Lokasi</td>
+                    <td class="text-lg mb-2">:</td>
+                    <td class="text-lg mb-2">{{ $listing->location }}</td>
+                </tr>
+
+            </table>
         </div>
         <x-card class="max-w-lg">
             <header class="text-center">
