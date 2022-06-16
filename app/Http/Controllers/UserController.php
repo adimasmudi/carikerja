@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -84,7 +85,7 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
-        if (auth()->attempt($formFields)) {
+        if (Auth::guard('user')->attempt($formFields)) {
             $request->session()->regenerate();
 
             return redirect('/')->with('message', 'Anda sudah login');

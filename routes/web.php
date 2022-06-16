@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ApplyController;
+use App\Http\Controllers\SeekerController;
 use App\Http\Controllers\ListingController;
 
 /*
@@ -64,6 +65,9 @@ Route::get('/register/seeker', [UserController::class, 'createSeeker'])->middlew
 // Create a new user
 Route::post('/users', [UserController::class, 'store']);
 
+// Create a new user
+Route::post('/seekers', [SeekerController::class, 'store']);
+
 // User Logout
 Route::post('/logout', [UserController::class, 'logout']);
 
@@ -75,8 +79,9 @@ Route::get('/login/recruiter', [UserController::class, 'loginRecruiter'])->name(
 Route::get('/login/seeker', [UserController::class, 'loginSeeker'])->name('loginSeeker')->middleware('guest');
 
 // Login user
-Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-
+Route::post('/users/recruiter/authenticate', [UserController::class, 'authenticate']);
+// Login Seeker
+Route::post('/users/seeker/authenticate', [SeekerController::class, 'authenticate']);
 
 // show manage apply
 Route::get('/apply/manage', [ApplyController::class, 'manage']);

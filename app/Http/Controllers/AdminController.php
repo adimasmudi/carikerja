@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    protected $guard = 'admins';
     // Show Login Login admin
     public function loginAdmin()
     {
