@@ -30,6 +30,7 @@
         <a href="/"><img class="w-42 h-20" src="{{ asset('images/carikerja_logo.png') }}" alt=""
                 class="logo" /></a>
         <ul class="flex space-x-6 mr-6 text-lg">
+            {{ session('seeker') }}
             @auth
                 <li>
                     <span class="font-bold uppercase">
@@ -37,7 +38,8 @@
                     </span>
                 </li>
                 <li>
-                    <a href="/listings/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Listings</a>
+                    <a href="/listings/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage
+                        Listings</a>
                 </li>
                 <li>
                     <form class="inline" method="POST" action="/logout">

@@ -43,7 +43,7 @@ class SeekerController extends Controller
         ]);
 
         if (Auth::guard('seeker')->attempt($formFields)) {
-            $request->session()->regenerate();
+            $request->session()->all();
 
             return redirect('/')->with('message', 'Anda sudah login');
         }

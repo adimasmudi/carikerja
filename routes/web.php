@@ -30,7 +30,9 @@ use App\Http\Controllers\ListingController;
 // destroy - Delete listing 
 
 // All Listing
-Route::get('/', [ListingController::class, 'index']);
+Route::get('/', function () {
+    return view('landing');
+});
 
 // Create Form
 Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
