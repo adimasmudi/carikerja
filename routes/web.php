@@ -98,9 +98,19 @@ Route::get('/apply/{listing}', [ApplyController::class, 'apply']);
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'loginAdmin']);
 
+    Route::get('/register', [AdminController::class, 'registerAdmin']);
+
+    Route::post('/store', [AdminController::class, 'store']);
+
+    Route::post('/authenticate', [AdminController::class, 'authenticate']);
+
     Route::get('/dashboard', [AdminController::class, 'dashboardAdmin']);
 
     Route::get('/dashboard/recruiter', [AdminController::class, 'dashboardAdminRecruiter']);
 
     Route::get('/dashboard/seeker', [AdminController::class, 'dashboardAdminSeeker']);
 });
+
+Route::get('/seeker/dashboard', [SeekerController::class, 'dashboardSeeker']);
+
+Route::get('/recruiter/dashboard', [UserController::class, 'dashboardRecruiter']);

@@ -27,8 +27,6 @@ class SeekerController extends Controller
         // Create User
         $seeker = Seeker::create($formFields);
 
-        // login
-        //auth()->login($seeker);
 
 
         return redirect('/login/seeker')->with('message', 'Pencari Kerja telah dibuat');
@@ -43,11 +41,17 @@ class SeekerController extends Controller
         ]);
 
         if (Auth::guard('seeker')->attempt($formFields)) {
-            $request->session()->all();
-
-            return redirect('/')->with('message', 'Anda sudah login');
+            $request->session()->put('seeker', $formFields['email']);
+            return redirect('/seeker/dashboard')->with([
+                'message' => 'Anda sudah login sebagai pencari kerja'
+            ]);
         }
 
         return back()->withErrors(['email' => 'Email atau kata sandi salah'])->onlyInput('email');
+    }
+
+    public function dashboardSeeker()
+    {
+        return view('seeker.dashboard');
     }
 }

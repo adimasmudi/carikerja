@@ -1,4 +1,5 @@
 <x-layout>
+    <x-navigation />
     <x-card class="p-10 max-w-lg mt-24" style="margin:auto">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">Register Pencari Kerja</h2>
@@ -81,9 +82,10 @@
             <div class="mt-8">
                 <p>
                     Sudah punya akun?
-                    <a href="/login" class="text-laravel">Login</a>
+                    <a href="/login/seeker" class="text-laravel">Login</a>
                 </p>
             </div>
         </form>
     </x-card>
+    <x-footer />
 </x-layout>

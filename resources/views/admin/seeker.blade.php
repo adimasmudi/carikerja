@@ -1,4 +1,5 @@
 <x-layout>
+    <x-navigation />
     <div class="flex h-screen">
         <div class="px-4 py-2 bg-gray-200 bg-laravel lg:w-1/4">
             <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 text-white lg:hidden" fill="none"
@@ -13,8 +14,8 @@
 
                     <li class="mb-2 rounded hover:shadow hover:bg-gray-800">
                         <a href="/admin/dashboard" class="inline-block w-full h-full px-3 py-2 font-bold text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 mr-2 -mt-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 mr-2 -mt-2"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                             </svg>
@@ -36,8 +37,8 @@
                     <li class="mb-2 rounded bg-gray-800">
                         <a href="/admin/dashboard/seeker"
                             class="inline-block w-full h-full px-3 py-2 font-bold text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 mr-2 -mt-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 mr-2 -mt-2"
+                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                             </svg>
@@ -263,4 +264,5 @@
             </div>
         </div>
     </div>
+    <x-footer />
 </x-layout>

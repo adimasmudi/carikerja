@@ -1,4 +1,5 @@
 <x-layout>
+    <x-navigation />
     <x-card class="p-10 max-w-lg mt-24" style="margin:auto">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">Login</h2>
@@ -39,9 +40,10 @@
             <div class="mt-8">
                 <p>
                     Belum punya akun?
-                    <a href="/register" class="text-laravel">Register</a>
+                    <a href="/register/recruiter" class="text-laravel">Register</a>
                 </p>
             </div>
         </form>
     </x-card>
+    <x-footer />
 </x-layout>

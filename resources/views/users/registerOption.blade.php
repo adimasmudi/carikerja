@@ -1,5 +1,5 @@
 <x-layout>
-    <div>
+    <div class="mt-4">
         <h1 class="font-bold text-center text-lg">Pilih opsi registrasi kamu</h1><br>
         <div class="flex flex-row w-1/2 mx-auto">
             <div class="w-1/2">

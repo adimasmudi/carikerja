@@ -1,4 +1,5 @@
 <x-layout>
+    <x-navigation />
     <x-card class="p-10 max-w-lg mt-24" style="margin:auto">
         <header class="text-center">
             <h2 class="text-2xl font-bold uppercase mb-1">Login Sebagai Admin</h2>
@@ -9,11 +10,11 @@
             @csrf
 
             <div class="mb-6">
-                <label for="email" class="inline-block text-lg mb-2">Email</label>
-                <input type="email" class="border border-gray-200 rounded p-2 w-full" name="email"
-                    value="{{ old('email') }}" />
+                <label for="username" class="inline-block text-lg mb-2">username</label>
+                <input type="text" class="border border-gray-200 rounded p-2 w-full" name="username"
+                    value="{{ old('username') }}" />
 
-                @error('email')
+                @error('username')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
             </div>
@@ -35,8 +36,15 @@
                     Login
                 </button>
             </div>
+            <div class="mt-8">
+                <p>
+                    Belum punya akun?
+                    <a href="/admin/register" class="text-laravel">Register</a>
+                </p>
+            </div>
 
 
         </form>
     </x-card>
+    <x-footer />
 </x-layout>

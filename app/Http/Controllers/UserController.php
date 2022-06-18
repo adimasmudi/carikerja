@@ -42,11 +42,8 @@ class UserController extends Controller
         // Create User
         $user = User::create($formFields);
 
-        // login
-        auth()->login($user);
 
-
-        return redirect('/')->with('message', 'User telah dibuat dan berhasil login');
+        return redirect('/login/recruiter')->with('message', 'Akun Recruiter telah berhasil dibuat');
     }
 
     // User Logout
@@ -86,11 +83,17 @@ class UserController extends Controller
         ]);
 
         if (Auth::guard('user')->attempt($formFields)) {
-            $request->session()->regenerate();
+            $request->session()->put('recruiter', $formFields['email']);
 
-            return redirect('/')->with('message', 'Anda sudah login');
+            return redirect('/recruiter/dashboard')->with('message', 'Anda sudah login sebagai recruiter');
         }
 
         return back()->withErrors(['email' => 'Email atau kata sandi salah'])->onlyInput('email');
+    }
+
+    // display dashboard recruiter
+    public function dashboardRecruiter()
+    {
+        return view('recruiter.dashboard');
     }
 }
