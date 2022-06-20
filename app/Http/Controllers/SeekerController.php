@@ -27,8 +27,6 @@ class SeekerController extends Controller
         // Create User
         $seeker = Seeker::create($formFields);
 
-
-
         return redirect('/login/seeker')->with('message', 'Pencari Kerja telah dibuat');
     }
 

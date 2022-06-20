@@ -2,6 +2,7 @@
 
 use App\Models\Listing;
 use Illuminate\Http\Request;
+use App\Http\Middleware\IsUser;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -34,23 +35,23 @@ Route::get('/', function () {
     return view('landing');
 });
 
+
 // Create Form
-Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+
 
 // Store Listing Data
-Route::post('/listings', [ListingController::class, 'store'])->middleware('auth');
+Route::post('/listings', [ListingController::class, 'store']);
 
 // Show Edit Form
-Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth');
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit']);
 
 // Update Listing
-Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware('auth');
+Route::put('/listings/{listing}', [ListingController::class, 'update']);
 
 // Delete Listing
-Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
-
-// Manage Listings
-Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 
 // Single Listing
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
@@ -114,3 +115,9 @@ Route::prefix('admin')->group(function () {
 Route::get('/seeker/dashboard', [SeekerController::class, 'dashboardSeeker']);
 
 Route::get('/recruiter/dashboard', [UserController::class, 'dashboardRecruiter']);
+
+// Manage Listings
+Route::get('/recruiter/manage', [UserController::class, 'manage']);
+
+// Manage Application
+Route::get('/recruiter/application', [UserController::class, 'application']);

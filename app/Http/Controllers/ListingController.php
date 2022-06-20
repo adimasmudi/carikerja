@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
@@ -49,12 +50,11 @@ class ListingController extends Controller
         if ($request->hasFile('logo')) {
             $formFields['logo'] = $request->file('logo')->store('logos', 'public');
         }
-
-        $formFields['user_id'] = auth()->id();
+        $formFields['user_id'] = Auth::guard('user')->user()->id;
 
         Listing::create($formFields);
 
-        return redirect('/')->with('message', 'Listing berhasil dibuat!!');
+        return redirect('/recruiter/manage')->with('message', 'Listing berhasil dibuat!!');
     }
 
     // Show edit form
@@ -67,7 +67,7 @@ class ListingController extends Controller
     public function update(Request $request, Listing $listing)
     {
         // make sure logged in user is owner
-        if ($listing->user_id != auth()->id()) {
+        if ($listing->user_id != Auth::guard('user')->id()) {
             abort(403, 'Unauthorized Action');
         }
         $formFields = $request->validate([
@@ -86,24 +86,18 @@ class ListingController extends Controller
 
         $listing->update($formFields);
 
-        return back()->with('message', 'Listing berhasil diedit!!');
+        return redirect('/recruiter/manage')->with('message', 'Listing berhasil diedit!!');
     }
 
     // Delete Listing
     public function destroy(Listing $listing)
     {
         // make sure logged in user is owner
-        if ($listing->user_id != auth()->id()) {
+        if ($listing->user_id != Auth::guard('user')->id()) {
             abort(403, 'Unauthorized Action');
         }
         $listing->delete();
 
-        return redirect('/')->with('message', 'Listing berhasil dihapus');
-    }
-
-    // Manage Listings
-    public function manage()
-    {
-        return view('listings.manage', ['listings' => auth()->user()->listings()->get()]);
+        return redirect('/recruiter/manage')->with('message', 'Listing berhasil dihapus');
     }
 }

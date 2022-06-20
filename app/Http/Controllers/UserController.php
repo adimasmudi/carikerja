@@ -94,6 +94,18 @@ class UserController extends Controller
     // display dashboard recruiter
     public function dashboardRecruiter()
     {
-        return view('recruiter.dashboard');
+        return view('recruiter.dashboard', ['listings' => Auth::guard('user')->user()->listings()->get()]);
+    }
+
+    // Manage Listings
+    public function manage()
+    {
+        return view('recruiter.manage', ['listings' => Auth::guard('user')->user()->listings()->get()]);
+    }
+
+    // Manage Listings
+    public function application()
+    {
+        return view('recruiter.application');
     }
 }
