@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Apply;
 use App\Models\Seeker;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -50,6 +52,17 @@ class SeekerController extends Controller
 
     public function dashboardSeeker()
     {
-        return view('seeker.dashboard');
+        return view('seeker.dashboard', [
+            'heading' => 'Latest Listings',
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->simplePaginate(4)
+        ]);
+    }
+
+    // Manage application
+    public function manage()
+    {
+        return view('seeker.manage', [
+            'applies' => Auth::guard('seeker')->user()->apply()->get()
+        ]);
     }
 }

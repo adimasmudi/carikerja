@@ -114,10 +114,22 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/seeker/dashboard', [SeekerController::class, 'dashboardSeeker']);
 
+// Manage Application
+Route::get('/seeker/manage', [SeekerController::class, 'manage']);
+
 Route::get('/recruiter/dashboard', [UserController::class, 'dashboardRecruiter']);
 
 // Manage Listings
 Route::get('/recruiter/manage', [UserController::class, 'manage']);
+
+// store work application
+Route::post('/seeker/apply', [ApplyController::class, 'store']);
+
+// delete application
+Route::delete('/seeker/apply/{apply}', [ApplyController::class, 'destroy']);
+
+// View Uploaded File
+Route::get('viewpdf/{apply}', [ApplyController::class, 'viewpdf']);
 
 // Manage Application
 Route::get('/recruiter/application', [UserController::class, 'application']);

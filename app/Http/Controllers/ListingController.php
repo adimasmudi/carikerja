@@ -9,16 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
-    // show all listings
-    public function index()
-    {
-
-        return view('listings.index', [
-            'heading' => 'Latest Listings',
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->simplePaginate(4)
-            // using all and find will not make it error, because it has specified in the laravel itself (i forget the detail hehe)
-        ]);
-    }
 
     // Show Spesific selected listing
     public function show(Listing $listing)

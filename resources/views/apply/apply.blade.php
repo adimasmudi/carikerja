@@ -1,5 +1,6 @@
 <x-layout>
-    <a href="/" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back to Home
+    <a href="/seeker/dashboard" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back to
+        Dashboard
     </a>
     <div class="flex flex-row justify-around">
         <div class="ml-2">
@@ -31,16 +32,16 @@
                 <p class="mb-4">Apply langsung pekerjaan yang anda inginkan</p>
             </header>
 
-            <form enctype="multipart/form-data">
+            <form method="POST" action="/seeker/apply" enctype="multipart/form-data">
                 @csrf
 
-
+                <input type="hidden" name="listing_id" value="{{ $listing->id }}">
                 <div class="mb-6">
-                    <label for="subject" class="inline-block text-lg mb-2">Subjek Lamaran</label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="subject"
-                        placeholder="Contoh: Melamar sebagai fullstack developer" value="{{ old('subject') }}" />
+                    <label for="subjek" class="inline-block text-lg mb-2">Subjek Lamaran</label>
+                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="subjek"
+                        placeholder="Contoh: Melamar sebagai fullstack developer" value="{{ old('subjek') }}" />
 
-                    @error('subject')
+                    @error('subjek')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
@@ -48,7 +49,7 @@
 
                 <div class="mb-6">
                     <label for="file" class="inline-block text-lg mb-2">
-                        Unggah file lamaran (opsional)
+                        Unggah CV (wajib)
                     </label>
                     <input type="file" class="border border-gray-200 rounded p-2 w-full" name="file" />
 
@@ -58,13 +59,13 @@
                 </div>
 
                 <div class="mb-6">
-                    <label for="applyText" class="inline-block text-lg mb-2">
+                    <label for="uraian" class="inline-block text-lg mb-2">
                         Tulis uraian lamaran pekerjaan
                     </label>
-                    <textarea class="border border-gray-200 rounded p-2 w-full" name="applyText" rows="10"
-                        placeholder="Termasuk perkenalan diri, alasan melamar, dll">{{ old('applyText') }}</textarea>
+                    <textarea class="border border-gray-200 rounded p-2 w-full" name="uraian" rows="10"
+                        placeholder="Termasuk perkenalan diri, alasan melamar, dll">{{ old('uraian') }}</textarea>
 
-                    @error('applyText')
+                    @error('uraian')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
@@ -74,7 +75,7 @@
                         Lamar Pekerjaan
                     </button>
 
-                    <a href="/" class="text-black ml-4"> Back </a>
+                    <a href="/seeker/dashboard" class="text-black ml-4"> Back </a>
                 </div>
             </form>
         </x-card>

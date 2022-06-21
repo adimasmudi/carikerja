@@ -1,7 +1,7 @@
 <x-layout>
 
 
-    <a href="/" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
+    <a href="/seeker/dashboard" class="inline-block text-black ml-4 mb-4"><i class="fa-solid fa-arrow-left"></i> Back
     </a>
     <div class="mx-4">
 
@@ -25,7 +25,6 @@
                 <h3 class="text-3xl font-bold mb-4">Job Description</h3>
                 <div class="text-lg space-y-6">
                     {{ $listing->description }}
-
                 </div>
                 <div class="w-1/5 mx-auto">
                     <a href="/apply/{{ $listing->id }}"
