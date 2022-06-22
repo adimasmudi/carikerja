@@ -60,4 +60,28 @@ class ApplyController extends Controller
             'Content-Disposition' => 'inline; filename="' . explode('/', $apply->file)[1] . '"'
         ]);
     }
+
+    public function approve(Request $request, Apply $apply, Listing $listing)
+    {
+        // make sure logged in user is owner
+        if ($listing->user_id != Auth::guard('user')->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        $apply->update(['status' => "diterima"]);
+
+
+        return redirect('/recruiter/manage')->with('message', 'Anda telah menyetujui lamaran');
+    }
+
+    public function reject(Request $request, Apply $apply, Listing $listing)
+    {
+        // make sure logged in user is owner
+        if ($listing->user_id != Auth::guard('user')->id()) {
+            abort(403, 'Unauthorized Action');
+        }
+        $apply->update(['status' => "ditolak"]);
+
+
+        return redirect('/recruiter/manage')->with('message', 'Anda telah menolak lamaran');
+    }
 }

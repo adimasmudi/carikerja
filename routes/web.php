@@ -133,3 +133,7 @@ Route::get('viewpdf/{apply}', [ApplyController::class, 'viewpdf']);
 
 // Manage Application
 Route::get('/recruiter/application', [UserController::class, 'application']);
+
+// approve or reject application
+Route::put('/applys/{apply}/{listing}/approve', [ApplyController::class, 'approve']);
+Route::put('/applys/{apply}/{listing}/reject', [ApplyController::class, 'reject']);

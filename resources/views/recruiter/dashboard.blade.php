@@ -1,3 +1,12 @@
+@php
+$amount = 0;
+foreach ($listings as $listing) {
+    $apply = DB::table('applys')
+        ->where('listing_id', $listing->id)
+        ->get();
+    $amount += count($apply);
+}
+@endphp
 <x-layout>
     <x-navigation />
     <div class="flex h-screen">
@@ -115,7 +124,7 @@
                             </svg>
                         </div>
                         <div class="mx-4">
-                            <h4 class="text-2xl font-semibold text-gray-700">30</h4>
+                            <h4 class="text-2xl font-semibold text-gray-700">{{ $amount }}</h4>
                             <div class="text-gray-500">Semua Pelamar</div>
                         </div>
                     </div>

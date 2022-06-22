@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Apply;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -106,6 +107,8 @@ class UserController extends Controller
     // Manage Listings
     public function application()
     {
-        return view('recruiter.application');
+        return view('recruiter.application', [
+            'listings' => Auth::guard('user')->user()->listings()->get()
+        ]);
     }
 }

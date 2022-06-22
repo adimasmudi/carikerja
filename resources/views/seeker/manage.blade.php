@@ -121,6 +121,8 @@
                                                     ->where('id', $apply->listing_id)
                                                     ->first();
                                                 
+                                                $status = $apply->status == 'menunggu' ? 'yellow' : 'green';
+                                                
                                             @endphp
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -174,13 +176,11 @@
                                                         {{ $apply->tgl }}
                                                     </div>
                                                 </td>
-                                                <td>
-                                                    <div
-                                                        class="flex justify-center text-sm font-medium leading-5 text-gray-900">
-                                                        <span
-                                                            class="text-{{ $apply->status == 'menunggu' ? 'yellow' : 'green' }}-500">{{ $apply->status }}</span>
-                                                    </div>
+                                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                    <span
+                                                        class="inline-flex px-2 text-xs font-semibold leading-5 text-{{ $status }}-800 bg-{{ $status }}-100 rounded-full">{{ $apply->status }}</span>
                                                 </td>
+
 
                                                 <td
                                                     class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
