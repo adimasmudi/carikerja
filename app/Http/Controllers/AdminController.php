@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Admin;
+use App\Models\Seeker;
+use App\Models\Listing;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
@@ -16,11 +19,6 @@ class AdminController extends Controller
         return view('admin.admin');
     }
 
-    // show register form
-    public function registerAdmin()
-    {
-        return view('admin.register');
-    }
 
     // store data admin
     public function store(Request $request)
@@ -73,5 +71,44 @@ class AdminController extends Controller
     public function dashboardAdminSeeker()
     {
         return view('admin.seeker');
+    }
+
+    // Delete Listing
+    public function deleteListing(Listing $listing)
+    {
+        // make sure logged in user is owner
+        if (Auth::guard('admin')) {
+            $listing->delete();
+
+            return redirect('/admin/dashboard')->with('message', 'Listing berhasil dihapus');
+        } else {
+            abort(403, 'unauthorized action');
+        }
+    }
+
+    // Delete Seeker
+    public function deleteSeeker(Seeker $seeker)
+    {
+        // make sure logged in user is owner
+        if (Auth::guard('admin')) {
+            $seeker->delete();
+
+            return redirect('/admin/dashboard')->with('message', 'Pencari Kerja berhasil dihapus');
+        } else {
+            abort(403, 'unauthorized action');
+        }
+    }
+
+    // Delete Recruiter
+    public function deleteRecruiter(User $user)
+    {
+        // make sure logged in user is owner
+        if (Auth::guard('admin')) {
+            $user->delete();
+
+            return redirect('/admin/dashboard')->with('message', 'Recruiter berhasil dihapus');
+        } else {
+            abort(403, 'unauthorized action');
+        }
     }
 }

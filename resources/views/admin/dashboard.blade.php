@@ -1,3 +1,8 @@
+@php
+$recruiters = DB::table('users')->get();
+$seekers = DB::table('seekers')->get();
+$listings = DB::table('listings')->get();
+@endphp
 <x-layout>
     <x-navigation />
     <div class="flex h-screen">
@@ -12,9 +17,8 @@
                         <h1 class="text-2xl font-bold text-white">Dashboard Admin</h1>
                     </div>
                     <ul>
-
                         <li class="mb-2 rounded">
-                            <a href="/seeker/profile" class="inline-block w-full h-full px-3 py-2 font-bold text-white">
+                            <span class="inline-block w-full h-full px-3 py-2 font-bold text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 mr-2 -mt-2"
                                     fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -24,7 +28,7 @@
                                 @if (session()->has('admin'))
                                     {{ session()->get('admin') }}
                                 @endif
-                            </a>
+                            </span>
                         </li>
                         <li class="mb-2 rounded bg-gray-800">
                             <a href="/admin/dashboard"
@@ -98,7 +102,7 @@
                             </svg>
                         </div>
                         <div class="mx-4">
-                            <h4 class="text-2xl font-semibold text-gray-700">100</h4>
+                            <h4 class="text-2xl font-semibold text-gray-700">{{ count($recruiters) }}</h4>
                             <div class="text-gray-500">Semua Recruiter</div>
                         </div>
                     </div>
@@ -114,7 +118,7 @@
                             </svg>
                         </div>
                         <div class="mx-4">
-                            <h4 class="text-2xl font-semibold text-gray-700">30</h4>
+                            <h4 class="text-2xl font-semibold text-gray-700">{{ count($seekers) }}</h4>
                             <div class="text-gray-500">Semua Pencari Kerja</div>
                         </div>
                     </div>
@@ -127,13 +131,14 @@
                             </svg>
                         </div>
                         <div class="mx-4">
-                            <h4 class="text-2xl font-semibold text-gray-700">1000</h4>
+                            <h4 class="text-2xl font-semibold text-gray-700">{{ count($listings) }}</h4>
                             <div class="text-gray-500">Semua Postingan Pekerjaan</div>
                         </div>
                     </div>
                 </div>
                 <div class="flex flex-col mt-8">
                     <div class="py-2 -my-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                        <h1 class="text-lg font-bold mb-6">Daftar Pekerjaan diposting</h1>
                         <div
                             class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                             <table class="min-w-full">
@@ -141,13 +146,20 @@
                                     <tr>
                                         <th
                                             class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                            Name</th>
+                                            Nama Perusahaan</th>
+                                        <th
+                                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                            Nama Pekerjaan</th>
                                         <th
                                             class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                             Email</th>
                                         <th
                                             class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                            Status</th>
+                                            Lokasi</th>
+                                        <th
+                                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                            Website</th>
+
                                         <th
                                             class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                             Delete</th>
@@ -155,184 +167,66 @@
                                 </thead>
 
                                 <tbody class="bg-white">
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="w-10 h-10 rounded-full"
-                                                        src="https://source.unsplash.com/user/erondu"
-                                                        alt="admin dashboard ui">
-                                                </div>
+                                    @foreach ($listings as $listing)
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 w-10 h-10">
+                                                        <img class="w-10 h-10 rounded-full"
+                                                            src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png') }}"
+                                                            alt="{{ $listing->title }}">
+                                                    </div>
 
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        John Doe
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium leading-5 text-gray-900">
+                                                            {{ $listing->company }}
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500">john@example.com</div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <span
-                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                        </td>
-                                        <td
-                                            class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="w-10 h-10 rounded-full"
-                                                        src="https://source.unsplash.com/user/erondu"
-                                                        alt="admin dashboard ui">
-                                                </div>
-
+                                            </td>
+                                            <td>
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        John Doe
+                                                        {{ $listing->title }}
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
+                                            </td>
 
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500">john@example.com</div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <span
-                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                        </td>
-
-
-                                        <td
-                                            class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="w-10 h-10 rounded-full"
-                                                        src="https://source.unsplash.com/user/erondu"
-                                                        alt="admin dashboard ui">
+                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                <div class="text-sm leading-5 text-gray-500">{{ $listing->email }}
                                                 </div>
+                                            </td>
 
+                                            <td>
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        John Doe
+                                                        {{ $listing->location }}
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500">john@example.com</div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <span
-                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                        </td>
-
-
-                                        <td
-                                            class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="w-10 h-10 rounded-full"
-                                                        src="https://source.unsplash.com/user/erondu"
-                                                        alt="admin dashboard ui">
-                                                </div>
-
+                                            </td>
+                                            <td>
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        John Doe
+                                                        {{ $listing->website }}
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500">john@example.com</div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <span
-                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                        </td>
-
-
-                                        <td
-                                            class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 w-10 h-10">
-                                                    <img class="w-10 h-10 rounded-full"
-                                                        src="https://source.unsplash.com/user/erondu"
-                                                        alt="admin dashboard ui">
-                                                </div>
-
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        John Doe
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-500">john@example.com</div>
-                                        </td>
-
-                                        <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <span
-                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">Active</span>
-                                        </td>
-
-
-                                        <td
-                                            class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-400"
-                                                fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                            </svg>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td
+                                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                                                <form method="POST" action="/admin/dashboard/{{ $listing->id }}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button><svg xmlns="http://www.w3.org/2000/svg"
+                                                            fill="currentColor"
+                                                            class="bi bi-trash3-fill fill-red-500 w-6 h-6"
+                                                            viewBox="0 0 16 16">
+                                                            <path
+                                                                d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
+                                                        </svg></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
                                 </tbody>
                             </table>

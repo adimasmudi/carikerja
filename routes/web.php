@@ -108,6 +108,12 @@ Route::prefix('admin')->group(function () {
     Route::get('/dashboard/recruiter', [AdminController::class, 'dashboardAdminRecruiter']);
 
     Route::get('/dashboard/seeker', [AdminController::class, 'dashboardAdminSeeker']);
+
+    Route::delete('/dashboard/{listing}', [AdminController::class, 'deleteListing']);
+
+    Route::delete('/seeker/{seeker}', [AdminController::class, 'deleteSeeker']);
+
+    Route::delete('/recruiter/{user}', [AdminController::class, 'deleteRecruiter']);
 });
 
 Route::get('/seeker/dashboard', [SeekerController::class, 'dashboardSeeker']);
