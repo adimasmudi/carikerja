@@ -121,8 +121,14 @@
                                                     ->where('id', $apply->listing_id)
                                                     ->first();
                                                 
-                                                $status = $apply->status == 'menunggu' ? 'yellow' : 'green';
-                                                
+                                                $status = '';
+                                                if ($apply->status == 'menunggu') {
+                                                    $status = 'yellow';
+                                                } elseif ($apply->status == 'ditolak') {
+                                                    $status = 'red';
+                                                } else {
+                                                    $status = 'green';
+                                                }
                                             @endphp
                                             <tr>
                                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -150,9 +156,9 @@
                                                 </td>
 
                                                 <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                    <div class="flex justify-center text-sm leading-5 text-gray-500">
-                                                        {{ $apply->subjek }}
-                                                    </div>
+                                                    <a href="/seeker/details/{{ $apply->id }}/{{ $listing->id }}"
+                                                        class="text-sm leading-5 text-gray-500">{{ $apply->subjek }}
+                                                    </a>
                                                 </td>
 
                                                 <td class="flex justify-center text-sm font-medium leading-5 text-gray-900">

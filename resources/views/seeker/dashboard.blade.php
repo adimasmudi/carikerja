@@ -1,7 +1,7 @@
 <x-layout>
     <x-navigation />
     <div class="flex h-screen">
-        <div class="px-4 py-2 bg-gray-200 bg-laravel lg:w-1/4">
+        <div class="px-4 py-2 bg-gray-200 bg-laravel lg:w-1/4 ">
             <svg xmlns="http://www.w3.org/2000/svg" class="inline w-8 h-8 text-white lg:hidden" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -77,11 +77,14 @@
             </div>
 
         </div>
-        <div class="w-full px-4 py-2 bg-gray-200 lg:w-full">
+        <div class="w-full px-4 py-2 bg-gray-200 lg:w-full ">
             <div class="container mx-auto mt-12">
                 @include('listings.index')
             </div>
         </div>
+    </div>
+    <div style="height:100px;width:100%;background:transparent">
+
     </div>
     <x-footer />
 </x-layout>

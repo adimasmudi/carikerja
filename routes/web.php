@@ -39,8 +39,6 @@ Route::get('/', function () {
 // Create Form
 Route::get('/listings/create', [ListingController::class, 'create']);
 
-
-
 // Store Listing Data
 Route::post('/listings', [ListingController::class, 'store']);
 
@@ -128,11 +126,17 @@ Route::post('/seeker/apply', [ApplyController::class, 'store']);
 // delete application
 Route::delete('/seeker/apply/{apply}', [ApplyController::class, 'destroy']);
 
+// See details application
+Route::get('/seeker/details/{apply}/{listing}', [SeekerController::class, 'details']);
+
 // View Uploaded File
 Route::get('viewpdf/{apply}', [ApplyController::class, 'viewpdf']);
 
 // Manage Application
 Route::get('/recruiter/application', [UserController::class, 'application']);
+
+// See details application
+Route::get('/recruiter/details/{apply}', [UserController::class, 'details']);
 
 // approve or reject application
 Route::put('/applys/{apply}/{listing}/approve', [ApplyController::class, 'approve']);

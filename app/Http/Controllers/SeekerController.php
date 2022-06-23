@@ -65,4 +65,13 @@ class SeekerController extends Controller
             'applies' => Auth::guard('seeker')->user()->apply()->get()
         ]);
     }
+
+    // see details application
+    public function details(Apply $apply, Listing $listing)
+    {
+        return view('seeker.details', [
+            'apply' => $apply,
+            'listing' => $listing
+        ]);
+    }
 }

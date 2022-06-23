@@ -111,4 +111,12 @@ class UserController extends Controller
             'listings' => Auth::guard('user')->user()->listings()->get()
         ]);
     }
+
+    // see details application
+    public function details(Apply $apply)
+    {
+        return view('recruiter.details', [
+            'apply' => $apply
+        ]);
+    }
 }

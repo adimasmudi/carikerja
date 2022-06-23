@@ -61,7 +61,7 @@ class ApplyController extends Controller
         ]);
     }
 
-    public function approve(Request $request, Apply $apply, Listing $listing)
+    public function approve(Apply $apply, Listing $listing)
     {
         // make sure logged in user is owner
         if ($listing->user_id != Auth::guard('user')->id()) {
@@ -73,7 +73,7 @@ class ApplyController extends Controller
         return redirect('/recruiter/manage')->with('message', 'Anda telah menyetujui lamaran');
     }
 
-    public function reject(Request $request, Apply $apply, Listing $listing)
+    public function reject(Apply $apply, Listing $listing)
     {
         // make sure logged in user is owner
         if ($listing->user_id != Auth::guard('user')->id()) {
