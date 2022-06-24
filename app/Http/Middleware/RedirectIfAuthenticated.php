@@ -19,11 +19,30 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next, ...$guards)
     {
+        // switch ($guard) {
+        //     case 'admin':
+        //       if (Auth::guard($guard)->check()) {
+        //         return redirect()->route('admin.dashboard');
+        //       }
+        //       break;
+        //     case 'writer':
+        //       if (Auth::guard($guard)->check()) {
+        //         return redirect()->route('writer.dashboard');
+        //       }
+        //       break;
+        //     default:
+        //       if (Auth::guard($guard)->check()) {
+        //           return redirect('/home'); 
+        //       }
+        //       break;
+        //   }
         $guards = empty($guards) ? [null] : $guards;
-
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if ($guard == 'user') {
+                    $guard = 'recruiter';
+                }
+                return redirect('/' . $guard . '/dashboard');
             }
         }
 

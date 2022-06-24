@@ -90,23 +90,21 @@ Route::group(['middleware' => ['seeker']], function () {
     Route::get('/seeker/details/{apply}/{listing}', [SeekerController::class, 'details']);
 });
 
-Route::group(['middleware' => ['guest']], function () {
-    // show register option
-    Route::get('/register/option', [UserController::class, 'registerOption']);
+// show register option
+Route::get('/register/option', [UserController::class, 'registerOption'])->middleware(['guest:user', 'guest:seeker']);
 
-    // Show User Registration/create form
-    Route::get('/register/recruiter', [UserController::class, 'createRecruiter']);
+// Show User Registration/create form
+Route::get('/register/recruiter', [UserController::class, 'createRecruiter'])->middleware('guest:user');
 
-    // Show User Registration/create form
-    Route::get('/register/seeker', [UserController::class, 'createSeeker']);
+// Show User Registration/create form
+Route::get('/register/seeker', [UserController::class, 'createSeeker'])->middleware('guest:seeker');
 
-    // show login option
-    Route::get('/login/option', [UserController::class, 'loginOption']);
+// show login option
+Route::get('/login/option', [UserController::class, 'loginOption'])->middleware(['guest:user', 'guest:seeker']);
 
-    // Show Login Form in recruiter or seeker
-    Route::get('/login/recruiter', [UserController::class, 'loginRecruiter'])->name('loginRecruiter');
-    Route::get('/login/seeker', [UserController::class, 'loginSeeker'])->name('loginSeeker');
-});
+// Show Login Form in recruiter or seeker
+Route::get('/login/recruiter', [UserController::class, 'loginRecruiter'])->name('loginRecruiter')->middleware('guest:user');
+Route::get('/login/seeker', [UserController::class, 'loginSeeker'])->name('loginSeeker')->middleware('guest:seeker');
 
 
 // Single Listing
@@ -130,7 +128,7 @@ Route::post('/users/seeker/authenticate', [SeekerController::class, 'authenticat
 
 // Admin routes
 Route::prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'loginAdmin']);
+    Route::get('/', [AdminController::class, 'loginAdmin'])->middleware('guest:admin');
     Route::post('/authenticate', [AdminController::class, 'authenticate']);
 
     Route::group(['middleware' => ['admin']], function () {
