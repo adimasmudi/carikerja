@@ -17,8 +17,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (Auth::guard('admin')) {
+        if (Auth::guard('admin')->check()) {
             return $next($request);
         }
         return redirect('/admin')->with('message', 'Anda bukan admin, silahkan login dulu');

@@ -17,9 +17,9 @@ class IsSeeker
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('seeker')) {
+        if (Auth::guard('seeker')->check()) {
             return $next($request);
         }
-        return redirect('/login/seeker')->with('error', 'You have not seeker access');
+        return redirect('/login/seeker')->with('message', 'Kamu tidak punya akses sebagai pencari kerja');
     }
 }

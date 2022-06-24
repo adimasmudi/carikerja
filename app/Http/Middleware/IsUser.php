@@ -17,10 +17,10 @@ class IsUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('user')) {
+        if (Auth::guard('user')->check()) {
             return $next($request);
         }
 
-        return redirect('/login/recruiter')->with('error', 'You have not recruiter access');
+        return redirect('/login/recruiter')->with('message', 'Kamu tidak punya akses sebagai recruiter');
     }
 }
