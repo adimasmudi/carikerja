@@ -49,6 +49,7 @@ class AdminController extends Controller
 
         if (Auth::guard('admin')->attempt($formFields)) {
             $request->session()->put('admin', $formFields['username']);
+            $request->session()->regenerate();
             return redirect('/admin/dashboard')->with([
                 'message' => 'Selamat datang admin'
             ]);

@@ -85,7 +85,7 @@ class UserController extends Controller
 
         if (Auth::guard('user')->attempt($formFields)) {
             $request->session()->put('recruiter', $formFields['email']);
-
+            $request->session()->regenerate();
             return redirect('/recruiter/dashboard')->with('message', 'Anda sudah login sebagai recruiter');
         }
 

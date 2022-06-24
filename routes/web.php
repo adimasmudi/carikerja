@@ -33,7 +33,7 @@ use App\Http\Controllers\ListingController;
 // All Listing
 Route::get('/', function () {
     return view('landing');
-});
+})->name('landing')->middleware('guest');
 
 
 // Create Form
@@ -55,7 +55,7 @@ Route::delete('/listings/{listing}', [ListingController::class, 'destroy']);
 Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 // show register option
-Route::get('/register/option', [UserController::class, 'registerOption']);
+Route::get('/register/option', [UserController::class, 'registerOption'])->middleware('guest');
 
 // Show User Registration/create form
 Route::get('/register/recruiter', [UserController::class, 'createRecruiter'])->middleware('guest');
@@ -73,7 +73,7 @@ Route::post('/seekers', [SeekerController::class, 'store']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 // show login option
-Route::get('/login/option', [UserController::class, 'loginOption']);
+Route::get('/login/option', [UserController::class, 'loginOption'])->middleware('guest');
 
 // Show Login Form in recruiter or seeker
 Route::get('/login/recruiter', [UserController::class, 'loginRecruiter'])->name('loginRecruiter')->middleware('guest');
@@ -90,31 +90,27 @@ Route::get('/apply/manage', [ApplyController::class, 'manage']);
 // show apply to work form
 Route::get('/apply/{listing}', [ApplyController::class, 'apply']);
 
-
-
-
 // Admin routes
 Route::prefix('admin')->group(function () {
     Route::get('/', [AdminController::class, 'loginAdmin']);
-
-    Route::get('/register', [AdminController::class, 'registerAdmin']);
-
-    Route::post('/store', [AdminController::class, 'store']);
-
     Route::post('/authenticate', [AdminController::class, 'authenticate']);
 
-    Route::get('/dashboard', [AdminController::class, 'dashboardAdmin']);
 
-    Route::get('/dashboard/recruiter', [AdminController::class, 'dashboardAdminRecruiter']);
+    Route::group(['middleware' => ['admin']], function () {
 
-    Route::get('/dashboard/seeker', [AdminController::class, 'dashboardAdminSeeker']);
+        Route::get('/dashboard', [AdminController::class, 'dashboardAdmin']);
+        Route::get('/dashboard/recruiter', [AdminController::class, 'dashboardAdminRecruiter']);
 
-    Route::delete('/dashboard/{listing}', [AdminController::class, 'deleteListing']);
+        Route::get('/dashboard/seeker', [AdminController::class, 'dashboardAdminSeeker']);
 
-    Route::delete('/seeker/{seeker}', [AdminController::class, 'deleteSeeker']);
+        Route::delete('/dashboard/{listing}', [AdminController::class, 'deleteListing']);
 
-    Route::delete('/recruiter/{user}', [AdminController::class, 'deleteRecruiter']);
+        Route::delete('/seeker/{seeker}', [AdminController::class, 'deleteSeeker']);
+
+        Route::delete('/recruiter/{user}', [AdminController::class, 'deleteRecruiter']);
+    });
 });
+
 
 Route::get('/seeker/dashboard', [SeekerController::class, 'dashboardSeeker']);
 
@@ -139,10 +135,10 @@ Route::get('/seeker/details/{apply}/{listing}', [SeekerController::class, 'detai
 Route::get('viewpdf/{apply}', [ApplyController::class, 'viewpdf']);
 
 // Manage Application
-Route::get('/recruiter/application', [UserController::class, 'application']);
+Route::get('/recruiter/application', [UserController::class, 'application'])->middleware('user');
 
 // See details application
-Route::get('/recruiter/details/{apply}', [UserController::class, 'details']);
+Route::get('/recruiter/details/{apply}', [UserController::class, 'details'])->middleware('user');
 
 // approve or reject application
 Route::put('/applys/{apply}/{listing}/approve', [ApplyController::class, 'approve']);

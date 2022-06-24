@@ -42,6 +42,7 @@ class SeekerController extends Controller
 
         if (Auth::guard('seeker')->attempt($formFields)) {
             $request->session()->put('seeker', $formFields['email']);
+            $request->session()->regenerate();
             return redirect('/seeker/dashboard')->with([
                 'message' => 'Anda sudah login sebagai pencari kerja'
             ]);

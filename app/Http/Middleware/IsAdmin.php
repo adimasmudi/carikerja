@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsUser
+class IsAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class IsUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('user')) {
+
+        if (Auth::guard('admin')) {
             return $next($request);
         }
-
-        return redirect('/login/recruiter')->with('error', 'You have not recruiter access');
+        return redirect('/admin')->with('message', 'Anda bukan admin, silahkan login dulu');
     }
 }

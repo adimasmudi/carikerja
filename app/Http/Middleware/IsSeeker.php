@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsUser
+class IsSeeker
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,9 @@ class IsUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::guard('user')) {
+        if (Auth::guard('seeker')) {
             return $next($request);
         }
-
-        return redirect('/login/recruiter')->with('error', 'You have not recruiter access');
+        return redirect('/login/seeker')->with('error', 'You have not seeker access');
     }
 }
