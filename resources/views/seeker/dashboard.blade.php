@@ -15,7 +15,8 @@
 
                     <ul>
                         <li class="mb-2 rounded">
-                            <a href="/seeker/profile" class="inline-block w-full h-full px-3 py-2 font-bold text-white">
+                            <span href="/seeker/profile"
+                                class="inline-block w-full h-full px-3 py-2 font-bold text-white">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6 mr-2 -mt-2"
                                     fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
                                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -25,7 +26,7 @@
                                 @if (session()->has('seeker'))
                                     {{ explode('@', session()->get('seeker'))[0] }}
                                 @endif
-                            </a>
+                            </span>
                         </li>
 
                         <li class="mb-2 rounded bg-gray-800">
@@ -82,9 +83,6 @@
                 @include('listings.index')
             </div>
         </div>
-    </div>
-    <div style="height:100px;width:100%;background:transparent">
-
     </div>
     <x-footer />
 </x-layout>

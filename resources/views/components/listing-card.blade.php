@@ -2,11 +2,11 @@
 
 <x-card class="w-2/5 ">
     <div class="flex bg-gray-100">
-        <img class="hidden w-48 mr-6 md:block"
+        <img class="hidden w-40 mr-6 md:block"
             src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png') }}"
             alt="" />
         <div>
-            <h3 class="text-2xl">
+            <h3 class="text-xl">
                 <a href="/listings/{{ $listing->id }}">{{ $listing->title }}</a>
             </h3>
             <div class="text-xl font-bold mb-4">{{ $listing->company }}</div>

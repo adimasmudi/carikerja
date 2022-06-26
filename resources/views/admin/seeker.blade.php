@@ -94,52 +94,118 @@ $seekers = DB::table('seekers')->get();
                                 </thead>
 
                                 <tbody class="bg-white">
-                                    @foreach ($seekers as $seeker)
-                                        <tr>
+                                    @if ($seekers)
+                                        @foreach ($seekers as $seeker)
+                                            <tr>
 
-                                            <td>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        {{ $seeker->nama }}
+                                                <td>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium leading-5 text-gray-900">
+                                                            {{ $seeker->nama }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        {{ $seeker->contact }}
+                                                </td>
+                                                <td>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium leading-5 text-gray-900">
+                                                            {{ $seeker->contact }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
+                                                </td>
 
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                                <div class="text-sm leading-5 text-gray-500">{{ $seeker->email }}
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium leading-5 text-gray-900">
-                                                        {{ $seeker->alamat }}
+                                                <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                                                    <div class="text-sm leading-5 text-gray-500">{{ $seeker->email }}
                                                     </div>
-                                                </div>
-                                            </td>
+                                                </td>
+                                                <td>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium leading-5 text-gray-900">
+                                                            {{ $seeker->alamat }}
+                                                        </div>
+                                                    </div>
+                                                </td>
 
-                                            <td
-                                                class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
-                                                <form method="POST" action="/admin/seeker/{{ $seeker->id }}">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                                <td
+                                                    class="px-6 py-4 text-sm leading-5 text-gray-500 whitespace-no-wrap border-b border-gray-200">
+                                                    <button type="button" class="ease-in-out" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal"><svg
+                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                                                             class="bi bi-trash3-fill fill-red-500 w-6 h-6"
                                                             viewBox="0 0 16 16">
                                                             <path
                                                                 d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
                                                         </svg></button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
+                                                    <!-- Modal -->
+                                                    <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+                                                        id="exampleModal" tabindex="-1"
+                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog relative w-auto pointer-events-none">
+                                                            <div
+                                                                class="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
+                                                                <div
+                                                                    class="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+                                                                    <h5 class="text-xl font-medium leading-normal text-gray-800"
+                                                                        id="exampleModalLabel">Modal</h5>
+                                                                    <button type="button"
+                                                                        class="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
+                                                                        data-bs-dismiss="modal"
+                                                                        aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body relative p-4">
+                                                                    Apakah anda yakin ingin menghapus listing ini?
+                                                                </div>
+                                                                <div
+                                                                    class="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+                                                                    <button type="button"
+                                                                        class="px-6
+                                                                                py-2.5
+                                                                                bg-blue-600
+                                                                                text-white
+                                                                                font-medium
+                                                                                text-xs
+                                                                                leading-tight
+                                                                                uppercase
+                                                                                rounded
+                                                                                shadow-md
+                                                                                hover:bg-blue-700 hover:shadow-lg
+                                                                                focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
+                                                                                active:bg-blue-800 active:shadow-lg
+                                                                                transition
+                                                                                duration-150
+                                                                                ease-in-out"
+                                                                        data-bs-dismiss="modal">Tutup</button>
+                                                                    <form method="POST"
+                                                                        action="/admin/seeker/{{ $seeker->id }}">
+                                                                        @csrf
+                                                                        @method('DELETE')
 
+                                                                        <button
+                                                                            class="px-6
+                                                                                py-2.5
+                                                                                bg-red-600
+                                                                                text-white
+                                                                                font-medium
+                                                                                text-xs
+                                                                                leading-tight
+                                                                                uppercase
+                                                                                rounded
+                                                                                shadow-md
+                                                                                hover:bg-red-700 hover:shadow-lg
+                                                                                focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0
+                                                                                active:bg-red-800 active:shadow-lg
+                                                                                transition
+                                                                                duration-150
+                                                                                ease-in-out
+                                                                                ml-1">Hapus</button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>

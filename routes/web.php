@@ -88,6 +88,9 @@ Route::group(['middleware' => ['seeker']], function () {
 
     // See details application
     Route::get('/seeker/details/{apply}/{listing}', [SeekerController::class, 'details']);
+
+    // Single Listing
+    Route::get('/listings/{listing}', [ListingController::class, 'show']);
 });
 
 // show register option
@@ -105,10 +108,6 @@ Route::get('/login/option', [UserController::class, 'loginOption'])->middleware(
 // Show Login Form in recruiter or seeker
 Route::get('/login/recruiter', [UserController::class, 'loginRecruiter'])->name('loginRecruiter')->middleware('guest:user');
 Route::get('/login/seeker', [UserController::class, 'loginSeeker'])->name('loginSeeker')->middleware('guest:seeker');
-
-
-// Single Listing
-Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
 // Create a new user
 Route::post('/users', [UserController::class, 'store']);

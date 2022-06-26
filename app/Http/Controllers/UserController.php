@@ -108,7 +108,7 @@ class UserController extends Controller
     public function application()
     {
         return view('recruiter.application', [
-            'listings' => Auth::guard('user')->user()->listings()->get()
+            'listings' => Auth::guard('user')->user()->listings()->get(),
         ]);
     }
 
